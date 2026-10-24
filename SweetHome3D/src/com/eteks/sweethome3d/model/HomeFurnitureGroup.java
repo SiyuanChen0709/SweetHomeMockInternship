@@ -265,7 +265,8 @@ public class HomeFurnitureGroup extends HomePieceOfFurniture {
           || HomePieceOfFurniture.Property.ANGLE.name().equals(ev.getPropertyName())
           || HomePieceOfFurniture.Property.WIDTH.name().equals(ev.getPropertyName())
           || HomePieceOfFurniture.Property.DEPTH.name().equals(ev.getPropertyName())
-          || HomePieceOfFurniture.Property.HEIGHT.name().equals(ev.getPropertyName())) {
+          || HomePieceOfFurniture.Property.HEIGHT.name().equals(ev.getPropertyName())
+          || HomePieceOfFurniture.Property.VOLUME.name().equals(ev.getPropertyName())) {
         group.updateLocationAndSize(group.getFurniture(), group.getAngle(), false);
       }
     }
@@ -440,6 +441,18 @@ public class HomeFurnitureGroup extends HomePieceOfFurniture {
       return this.fixedHeight;
     } else {
       return super.getHeight();
+    }
+  }
+
+  /**
+   * Returns the volume of this group.
+   */
+  @Override
+  public float getVolume() {
+    if (!this.resizable) {
+      return this.fixedDepth * this.fixedHeight * this.fixedWidth;
+    } else {
+      return super.getVolume();
     }
   }
   
